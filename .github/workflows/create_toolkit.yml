@@ -1,0 +1,18 @@
+name: Create Toolkit
+
+on:
+  workflow_dispatch:
+
+jobs:
+  compile_toolkit:
+    runs-on: windows-latest
+    steps:
+      -
+        name: Download Interceptor
+        uses: actions/checkout@v3
+        with:
+          repository: 'klezVirus/inceptor'
+          submodules: 'recursive'
+      -
+        name: Run Interceptor update-config.py
+        run: dir

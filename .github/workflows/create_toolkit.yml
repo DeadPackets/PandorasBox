@@ -24,4 +24,4 @@ jobs:
           .\venv\Scripts\activate.bat
           pip install -r requirements.txt
           cd .\inceptor
-          python .\update-config.py
+          echo "0\n" | python .\update-config.py

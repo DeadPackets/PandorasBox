@@ -14,14 +14,12 @@ jobs:
           repository: 'klezVirus/inceptor'
           submodules: 'recursive'
           path: './inceptor'
-          # ref: 'dev' #! Needs to be tested!
+          ref: 'dev' #! Needs to be tested!
       -
         name: Setup Inceptor
         run: |
           cd .\inceptor
-          pip install virtualenv wheel
-          virtualenv venv
-          .\venv\Scripts\activate.bat
+          pip install wheel
           pip install -r requirements.txt
           cd .\inceptor
       - name: Start SSH session

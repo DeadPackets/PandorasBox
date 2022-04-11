@@ -8,13 +8,46 @@ jobs:
     runs-on: windows-latest
     steps:
       -
+        name: Setup folders
+        run: |
+          mkdir Source
+          mkdir CSharp
+          mkdir Binaries
+          mkdir PowerShell
+          mkdir PowerShell\Original
+          mkdir PowerShell\Obfuscated
+          mkdir CSharp\Original
+          mkdir CSharp\Inceptor
+          mkdir CSharp\PSH_Loader
+          mkdir Binaries\Original
+          mkdir Binaries\Inceptor
+      -
+        name: Download Original PowerShell scripts
+        run: |
+          curl https://raw.githubusercontent.com/orlyjamie/mimikittenz/master/Invoke-mimikittenz.ps1 --output PowerShell\Original\Invoke-Mimikittenz.ps1
+          curl https://raw.githubusercontent.com/dafthack/MailSniper/master/MailSniper.ps1 --output PowerShell\Original\MailSniper.ps1
+          curl https://raw.githubusercontent.com/NetSPI/PowerUpSQL/master/PowerUpSQL.ps1 --output PowerShell\Original\PowerUpSQL.ps1
+          curl https://raw.githubusercontent.com/adrecon/ADRecon/master/ADRecon.ps1 --output PowerShell\Original\ADRecon.ps1
+      -
+        name: Download Invoke-Stealth
+        run: |
+          git clone --single-branch --depth 1 --recursive https://github.com/JoelGMSec/Invoke-Stealth
+      -
+        name: Obfuscate each PowerShell script
+        run: |
+          whoami
+      -
+        name: Download CSharp tools source
+        run: |
+          whoami
+      -
+        name: Compile Original CSharp tools
+        run: |
+          whoami
+      -
         name: Download Inceptor
-        uses: actions/checkout@v3
-        with:
-          repository: 'klezVirus/inceptor'
-          submodules: 'recursive'
-          path: './inceptor'
-          # ref: 'dev' #! Needs to be tested!
+        run: |
+          git clone --depth 1 --single-branch --recursive https://github.com/klezVirus/inceptor.git .\inceptor
       -
         name: Setup Inceptor
         run: |
@@ -23,6 +56,11 @@ jobs:
           pip install -r requirements.txt
           cd .\inceptor
           #TODO: Download LLVM manually
+          #TODO: Copy ready config file from manual run
+      -
+        name: Obfuscate all Confused CSharp tools with Inceptor (with different versions/args)
+        run: |
+          whoami
       - name: Start SSH session
         uses: luchihoratiu/debug-via-ssh@main
         with:

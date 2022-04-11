@@ -24,4 +24,6 @@ jobs:
           .\venv\Scripts\activate.bat
           pip install -r requirements.txt
           cd .\inceptor
-          echo "0\n" | python .\update-config.py
+      -
+        uses: mxschmitt/action-tmate@v3
+

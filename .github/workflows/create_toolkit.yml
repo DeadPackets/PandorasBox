@@ -24,6 +24,8 @@ jobs:
           .\venv\Scripts\activate.bat
           pip install -r requirements.txt
           cd .\inceptor
-      -
-        uses: mxschmitt/action-tmate@v3
-
+      - name: Start SSH session
+        uses: luchihoratiu/debug-via-ssh@main
+        with:
+          NGROK_AUTH_TOKEN: ${{ secrets.NGROK_AUTH_TOKEN }}
+          SSH_PASS: SuperSecretPass1337

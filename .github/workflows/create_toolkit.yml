@@ -8,11 +8,13 @@ jobs:
     runs-on: windows-latest
     steps:
       -
-        name: Download Interceptor
+        name: Download Inceptor
         uses: actions/checkout@v3
         with:
           repository: 'klezVirus/inceptor'
           submodules: 'recursive'
+          path: './inceptor'
+          # ref: 'dev' #! Needs to be tested!
       -
-        name: Run Interceptor update-config.py
-        run: dir
+        name: Run Inceptor update-config.py
+        run: dir ./inceptor
